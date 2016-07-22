@@ -1,0 +1,14 @@
+{
+  "name": "@stlouisweb/baasbox",
+  "version": "0.1.0",
+  "description": "Node wrapper for BaasBox JS SDK library.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeremy Plack <stlouisweb@gmail.com>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "jquery": "1.9.1"
+  }
+}
