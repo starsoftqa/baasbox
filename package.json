@@ -1,14 +1,35 @@
 {
-  "name": "@stlouisweb/baasbox",
+  "name": "baasbox",
   "version": "0.1.0",
   "description": "Node wrapper for BaasBox JS SDK library.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run build-prep && npm run build-js",
+    "build-prep": "cp baasbox-lib/baasbox.js index-src.js && sed -i -e \"1i var $ = require('jquery');\" index-src.js && echo '\n\nmodule.exports = BaasBox;' >> index-src.js",
+    "build-js": "browserify -t strictify index-src.js -d -p browserify-derequire -p [minifyify --no-map] > index.js"
   },
   "author": "Jeremy Plack <stlouisweb@gmail.com>",
   "license": "UNLICENSED",
   "dependencies": {
     "jquery": "1.9.1"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.1",
+    "browserify-derequire": "^0.9.4",
+    "browserify-shim": "^3.8.12",
+    "minifyify": "^7.3.3",
+    "strictify": "^0.2.0"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "jquery": "./node_modules/jquery/jquery.js"
+  },
+  "browserify-shim": {
+    "jquery": "$",
+    "three": "global:THREE"
   }
 }
